@@ -16,26 +16,71 @@ interface HistoryRow {
 }
 
 export default async function ClientsPage() {
-  const supabase = getSupabaseServer();
+  let clients: Client[] = [];
+  let history: HistoryRow[] = [];
 
-  const { data: clientsData } = await supabase
-    .from("clients")
-    .select("id, name, display_id, created_at")
-    .order("name");
+  try {
+    const supabase = getSupabaseServer();
 
-  const { data: historyData } = await supabase
-    .from("history")
-    .select("client_id, created_at")
-    .order("created_at", { ascending: false });
+    const { data: clientsData, error: clientsError } = await supabase
+      .from("clients")
+      .select("id, name, display_id, created_at")
+      .order("name");
 
-  const clients: Client[] = (clientsData || []).map((r) => ({
-    id: r.id,
-    name: r.name,
-    displayId: r.display_id ?? undefined,
-    createdAt: r.created_at,
-  }));
+    if (clientsError) {
+      console.error("Supabase clients error:", clientsError);
+      throw new Error(clientsError.message);
+    }
 
-  const history = (historyData || []) as HistoryRow[];
+    const { data: historyData, error: historyError } = await supabase
+      .from("history")
+      .select("client_id, created_at")
+      .order("created_at", { ascending: false });
+
+    if (historyError) {
+      console.error("Supabase history error:", historyError);
+      throw new Error(historyError.message);
+    }
+
+    clients = (clientsData || []).map((r) => ({
+      id: r.id,
+      name: r.name,
+      displayId: r.display_id ?? undefined,
+      createdAt: r.created_at,
+    }));
+
+    history = (historyData || []) as HistoryRow[];
+  } catch (err) {
+    console.error("Clients page error:", err);
+    return (
+      <main className="min-h-screen bg-gray-50">
+        <header className="bg-white border-b border-gray-200 px-6 py-4">
+          <div className="max-w-4xl mx-auto flex items-center justify-between">
+            <a href="/" className="text-xs text-blue-600 hover:text-blue-700 font-medium">
+              Voltar para processamento
+            </a>
+          </div>
+        </header>
+        <div className="max-w-4xl mx-auto px-6 py-10">
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
+            <h2 className="text-lg font-semibold text-amber-800 mb-2">
+              Erro ao carregar clientes
+            </h2>
+            <p className="text-sm text-amber-700 mb-2">
+              Não foi possível conectar ao Supabase. Verifique:
+            </p>
+            <ul className="list-disc list-inside text-sm text-amber-700 space-y-1">
+              <li>Variáveis <code className="bg-amber-100 px-1 rounded">NEXT_PUBLIC_SUPABASE_URL</code> e <code className="bg-amber-100 px-1 rounded">SUPABASE_SERVICE_ROLE_KEY</code> no Railway</li>
+              <li>Se o arquivo <code className="bg-amber-100 px-1 rounded">supabase/schema.sql</code> foi executado no SQL Editor do Supabase (tabelas <code className="bg-amber-100 px-1 rounded">clients</code> e <code className="bg-amber-100 px-1 rounded">history</code>)</li>
+            </ul>
+            <p className="text-xs text-amber-600 mt-3">
+              Detalhe: {err instanceof Error ? err.message : String(err)}
+            </p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   const statsByClient: Record<string, { count: number; lastUpdated: string | null }> = {};
   for (const client of clients) {
