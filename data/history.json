@@ -1,0 +1,297 @@
+[
+  {
+    "id": "proc_1772472431582",
+    "clientId": "99999999_1772470983512",
+    "clientName": "Daniel da Silva",
+    "quarter": "Q4",
+    "year": "2025",
+    "salesCount": 1,
+    "purchasesCount": 0,
+    "droppedCount": 12,
+    "fileName": "Daniel_da_Silva_Q4_2025_1772472431336.xlsx",
+    "downloadPath": "Daniel_da_Silva_Q4_2025/Daniel_da_Silva_Q4_2025_1772472431336.xlsx",
+    "createdAt": "2026-03-02T17:27:11.582Z"
+  },
+  {
+    "id": "proc_1772473358894",
+    "clientId": "99999999_1772470983512",
+    "clientName": "Daniel da Silva",
+    "quarter": "Q3",
+    "year": "2025",
+    "salesCount": 12,
+    "purchasesCount": 0,
+    "droppedCount": 1,
+    "fileName": "Daniel_da_Silva_Q3_2025_1772473358904.xlsx",
+    "downloadPath": "Daniel_da_Silva_Q3_2025/Daniel_da_Silva_Q3_2025_1772473358904.xlsx",
+    "uploadedFileNames": [
+      "CIS_Statement_Daniel Da Silva_2025Aug.pdf",
+      "CIS_Statement_Daniel Da Silva_2025Oct.pdf",
+      "CIS_Statement_Daniel Da Silva_2025Sep.pdf"
+    ],
+    "uploadedFiles": [
+      {
+        "name": "CIS_Statement_Daniel Da Silva_2025Aug.pdf",
+        "path": "uploads/proc_1772473358894/CIS_Statement_Daniel_Da_Silva_2025Aug.pdf"
+      },
+      {
+        "name": "CIS_Statement_Daniel Da Silva_2025Oct.pdf",
+        "path": "uploads/proc_1772473358894/CIS_Statement_Daniel_Da_Silva_2025Oct.pdf"
+      },
+      {
+        "name": "CIS_Statement_Daniel Da Silva_2025Sep.pdf",
+        "path": "uploads/proc_1772473358894/CIS_Statement_Daniel_Da_Silva_2025Sep.pdf"
+      }
+    ],
+    "createdAt": "2026-03-02T17:42:39.122Z"
+  },
+  {
+    "id": "proc_1772475922743",
+    "clientId": "11111111_1772475803927",
+    "clientName": "Lucas Montandon",
+    "quarter": "Q2",
+    "year": "2024",
+    "salesCount": 16,
+    "purchasesCount": 0,
+    "droppedCount": 92,
+    "fileName": "Lucas_Montandon_Q2_2024_1772475922745.xlsx",
+    "downloadPath": "Lucas_Montandon_Q2_2024/Lucas_Montandon_Q2_2024_1772475922745.xlsx",
+    "uploadedFileNames": [
+      "Monzo Data Export - CSV (Monday, June 23rd, 2025).csv"
+    ],
+    "uploadedFiles": [
+      {
+        "name": "Monzo Data Export - CSV (Monday, June 23rd, 2025).csv",
+        "path": "uploads/proc_1772475922743/Monzo_Data_Export_-_CSV__Monday__June_23rd__2025_.csv"
+      }
+    ],
+    "createdAt": "2026-03-02T18:25:22.959Z"
+  },
+  {
+    "id": "proc_1772478282736",
+    "clientId": "11111111_1772475803927",
+    "clientName": "Lucas Montandon",
+    "quarter": "Q2",
+    "year": "2024",
+    "salesCount": 16,
+    "purchasesCount": 274,
+    "droppedCount": 1006,
+    "fileName": "Lucas_Montandon_Q2_2024_1772478282737.xlsx",
+    "downloadPath": "Lucas_Montandon_Q2_2024/Lucas_Montandon_Q2_2024_1772478282737.xlsx",
+    "uploadedFileNames": [
+      "Monzo Data Export - CSV (Monday, June 23rd, 2025).csv"
+    ],
+    "uploadedFiles": [
+      {
+        "name": "Monzo Data Export - CSV (Monday, June 23rd, 2025).csv",
+        "path": "uploads/proc_1772478282736/Monzo_Data_Export_-_CSV__Monday__June_23rd__2025_.csv"
+      }
+    ],
+    "createdAt": "2026-03-02T19:04:42.931Z"
+  },
+  {
+    "id": "proc_1772478959560",
+    "clientId": "11111111_1772475803927",
+    "clientName": "Lucas Montandon",
+    "quarter": "Q1",
+    "year": "2024",
+    "salesCount": 4,
+    "purchasesCount": 80,
+    "droppedCount": 1212,
+    "fileName": "Lucas_Montandon_Q1_2024_1772478959562.xlsx",
+    "downloadPath": "Lucas_Montandon_Q1_2024/Lucas_Montandon_Q1_2024_1772478959562.xlsx",
+    "uploadedFileNames": [
+      "Monzo Data Export - CSV (Monday, June 23rd, 2025) (1).csv"
+    ],
+    "uploadedFiles": [
+      {
+        "name": "Monzo Data Export - CSV (Monday, June 23rd, 2025) (1).csv",
+        "path": "uploads/proc_1772478959560/Monzo_Data_Export_-_CSV__Monday__June_23rd__2025___1_.csv"
+      }
+    ],
+    "createdAt": "2026-03-02T19:15:59.785Z"
+  },
+  {
+    "id": "proc_1772481650099",
+    "clientId": "11111111_1772475803927",
+    "clientName": "Lucas Montandon",
+    "quarter": "Q2",
+    "year": "2024",
+    "salesCount": 21,
+    "purchasesCount": 291,
+    "droppedCount": 984,
+    "fileName": "Lucas_Montandon_Q2_2024_1772481650101.xlsx",
+    "downloadPath": "Lucas_Montandon_Q2_2024/Lucas_Montandon_Q2_2024_1772481650101.xlsx",
+    "uploadedFileNames": [
+      "Monzo Data Export - CSV (Monday, June 23rd, 2025).csv"
+    ],
+    "uploadedFiles": [
+      {
+        "name": "Monzo Data Export - CSV (Monday, June 23rd, 2025).csv",
+        "path": "uploads/proc_1772481650099/Monzo_Data_Export_-_CSV__Monday__June_23rd__2025_.csv"
+      }
+    ],
+    "createdAt": "2026-03-02T20:00:50.339Z"
+  },
+  {
+    "id": "proc_1772485019005",
+    "clientId": "11111111_1772475803927",
+    "clientName": "Lucas Montandon",
+    "quarter": "Q1",
+    "year": "2025",
+    "salesCount": 21,
+    "purchasesCount": 257,
+    "droppedCount": 1018,
+    "fileName": "Lucas_Montandon_Q1_2025_1772485019007.xlsx",
+    "downloadPath": "Lucas_Montandon_Q1_2025/Lucas_Montandon_Q1_2025_1772485019007.xlsx",
+    "uploadedFileNames": [
+      "Monzo Data Export - CSV (Monday, June 23rd, 2025).csv"
+    ],
+    "uploadedFiles": [
+      {
+        "name": "Monzo Data Export - CSV (Monday, June 23rd, 2025).csv",
+        "path": "uploads/proc_1772485019005/Monzo_Data_Export_-_CSV__Monday__June_23rd__2025_.csv"
+      }
+    ],
+    "createdAt": "2026-03-02T20:56:59.245Z"
+  },
+  {
+    "id": "proc_1772485424179",
+    "clientId": "11111111_1772475803927",
+    "clientName": "Lucas Montandon",
+    "quarter": "Q3",
+    "year": "2024",
+    "salesCount": 45,
+    "purchasesCount": 354,
+    "droppedCount": 897,
+    "fileName": "Lucas_Montandon_Q3_2024_1772485424181.xlsx",
+    "downloadPath": "Lucas_Montandon_Q3_2024/Lucas_Montandon_Q3_2024_1772485424181.xlsx",
+    "uploadedFileNames": [
+      "Monzo Data Export - CSV (Monday, June 23rd, 2025).csv"
+    ],
+    "uploadedFiles": [
+      {
+        "name": "Monzo Data Export - CSV (Monday, June 23rd, 2025).csv",
+        "path": "uploads/proc_1772485424179/Monzo_Data_Export_-_CSV__Monday__June_23rd__2025_.csv"
+      }
+    ],
+    "createdAt": "2026-03-02T21:03:44.434Z"
+  },
+  {
+    "id": "proc_1772485798157",
+    "clientId": "11111111_1772471378324",
+    "clientName": "Gabriela Pires",
+    "quarter": "Q2",
+    "year": "2024",
+    "salesCount": 2,
+    "purchasesCount": 0,
+    "droppedCount": 0,
+    "fileName": "Gabriela_Pires_Q2_2024_1772485798164.xlsx",
+    "downloadPath": "Gabriela_Pires_Q2_2024/Gabriela_Pires_Q2_2024_1772485798164.xlsx",
+    "uploadedFileNames": [
+      "Tiago Evandro Clemente Cunha - Payment and Deduction Statement - 05-05-2024.pdf",
+      "Tiago Evandro Clemente Cunha - Payment and Deduction Statement - 05-06-2024.pdf"
+    ],
+    "uploadedFiles": [
+      {
+        "name": "Tiago Evandro Clemente Cunha - Payment and Deduction Statement - 05-05-2024.pdf",
+        "path": "uploads/proc_1772485798157/Tiago_Evandro_Clemente_Cunha_-_Payment_and_Deduction_Statement_-_05-05-2024.pdf"
+      },
+      {
+        "name": "Tiago Evandro Clemente Cunha - Payment and Deduction Statement - 05-06-2024.pdf",
+        "path": "uploads/proc_1772485798157/Tiago_Evandro_Clemente_Cunha_-_Payment_and_Deduction_Statement_-_05-06-2024.pdf"
+      }
+    ],
+    "createdAt": "2026-03-02T21:09:58.402Z"
+  },
+  {
+    "id": "proc_1772488831369",
+    "clientId": "11111111_1772471378324",
+    "clientName": "Gabriela Pires",
+    "quarter": "Q1",
+    "year": "2025",
+    "salesCount": 2,
+    "purchasesCount": 0,
+    "droppedCount": 0,
+    "fileName": "Gabriela_Pires_Q1_2025_1772488831376.xlsx",
+    "downloadPath": "Gabriela_Pires_Q1_2025/Gabriela_Pires_Q1_2025_1772488831376.xlsx",
+    "uploadedFileNames": [
+      "Pay mes 2.pdf",
+      "Pay mes 3.pdf"
+    ],
+    "uploadedFiles": [
+      {
+        "name": "Pay mes 2.pdf",
+        "path": "uploads/proc_1772488831369/Pay_mes_2.pdf"
+      },
+      {
+        "name": "Pay mes 3.pdf",
+        "path": "uploads/proc_1772488831369/Pay_mes_3.pdf"
+      }
+    ],
+    "createdAt": "2026-03-02T22:00:31.617Z"
+  },
+  {
+    "id": "proc_1772492949173",
+    "clientId": "99999999_1772470983512",
+    "clientName": "Daniel da Silva",
+    "quarter": "Q1",
+    "year": "2025",
+    "salesCount": 2,
+    "purchasesCount": 0,
+    "droppedCount": 1,
+    "fileName": "Daniel_da_Silva_Q1_2025_1772492949177.xlsx",
+    "downloadPath": "Daniel_da_Silva_Q1_2025/Daniel_da_Silva_Q1_2025_1772492949177.xlsx",
+    "uploadedFileNames": [
+      "Pay mes 2.pdf",
+      "Pay mes 3.pdf",
+      "Pay mes 4.pdf"
+    ],
+    "uploadedFiles": [
+      {
+        "name": "Pay mes 2.pdf",
+        "path": "uploads/proc_1772492949173/Pay_mes_2.pdf"
+      },
+      {
+        "name": "Pay mes 3.pdf",
+        "path": "uploads/proc_1772492949173/Pay_mes_3.pdf"
+      },
+      {
+        "name": "Pay mes 4.pdf",
+        "path": "uploads/proc_1772492949173/Pay_mes_4.pdf"
+      }
+    ],
+    "createdAt": "2026-03-02T23:09:09.438Z"
+  },
+  {
+    "id": "proc_1772493794137",
+    "clientId": "123456_1772493586505",
+    "clientName": "Tony Eduardo",
+    "quarter": "Q2",
+    "year": "2025",
+    "salesCount": 30,
+    "purchasesCount": 103,
+    "droppedCount": 0,
+    "fileName": "Tony_Eduardo_Q2_2025_1772493794143.xlsx",
+    "downloadPath": "Tony_Eduardo_Q2_2025/Tony_Eduardo_Q2_2025_1772493794143.xlsx",
+    "uploadedFileNames": [
+      "Statement_2025_4.pdf",
+      "Statement_2025_5.pdf",
+      "Statement_2025_6.pdf"
+    ],
+    "uploadedFiles": [
+      {
+        "name": "Statement_2025_4.pdf",
+        "path": "uploads/proc_1772493794137/Statement_2025_4.pdf"
+      },
+      {
+        "name": "Statement_2025_5.pdf",
+        "path": "uploads/proc_1772493794137/Statement_2025_5.pdf"
+      },
+      {
+        "name": "Statement_2025_6.pdf",
+        "path": "uploads/proc_1772493794137/Statement_2025_6.pdf"
+      }
+    ],
+    "createdAt": "2026-03-02T23:23:14.395Z"
+  }
+]
