@@ -30,6 +30,20 @@ CREATE TABLE IF NOT EXISTS history (
 CREATE INDEX IF NOT EXISTS idx_history_client_id ON history(client_id);
 CREATE INDEX IF NOT EXISTS idx_history_created_at ON history(created_at DESC);
 
+-- Tabela de utilizadores admin (login)
+CREATE TABLE IF NOT EXISTS admin_users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  username TEXT NOT NULL UNIQUE,
+  salt TEXT NOT NULL,
+  password_hash TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_admin_users_username ON admin_users(username);
+
+-- Para criar o primeiro utilizador, execute o script: node scripts/seed-admin.js
+-- (com NEXT_PUBLIC_SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY no .env)
+
 -- Storage: crie um bucket no painel Supabase (Storage → New bucket):
 -- Nome: tax-return-files
 -- Public: No (acesso apenas via API com service role)
