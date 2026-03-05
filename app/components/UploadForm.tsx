@@ -212,23 +212,26 @@ export default function UploadForm() {
     setProgressMsg("");
   };
 
+  const inputBase =
+    "w-full bg-white border border-[var(--border)] rounded-md px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-disabled)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent transition-all duration-150 disabled:bg-[var(--bg-subtle)] disabled:text-[var(--text-disabled)]";
+
   return (
     <div className="space-y-6">
       {/* Form card */}
       {status !== "success" && (
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 space-y-5">
-          <h2 className="text-base font-semibold text-gray-800">Novo processamento</h2>
+        <div className="bg-white border border-[var(--border)] rounded-lg p-5 space-y-5">
+          <h2 className="text-base font-semibold text-[var(--text-primary)]">Novo processamento</h2>
 
           {/* Client selection / creation */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <label className="block text-sm font-medium text-gray-700">
-                Cliente <span className="text-red-500">*</span>
+              <label className="block text-sm font-medium text-[var(--text-primary)]">
+                Cliente <span className="text-[var(--error)]">*</span>
               </label>
               <button
                 type="button"
                 onClick={() => setIsCreatingClient((prev) => !prev)}
-                className="text-xs text-blue-600 hover:text-blue-700 font-medium"
+                className="text-xs text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium transition-colors"
                 disabled={status === "loading"}
               >
                 {isCreatingClient ? "Cancelar novo cliente" : "Novo cliente"}
@@ -240,7 +243,7 @@ export default function UploadForm() {
                 value={selectedClientId}
                 onChange={(e) => setSelectedClientId(e.target.value)}
                 disabled={status === "loading" || clients.length === 0}
-                className="w-full px-3.5 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 bg-white"
+                className={inputBase}
               >
                 {clients.length === 0 ? (
                   <option value="">Nenhum cliente cadastrado — crie um novo</option>
@@ -260,7 +263,7 @@ export default function UploadForm() {
             {isCreatingClient && (
               <div className="grid grid-cols-2 gap-3">
                 <div className="col-span-2">
-                  <label className="block text-xs font-medium text-gray-600 mb-1">
+                  <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1">
                     Nome do cliente
                   </label>
                   <input
@@ -269,11 +272,11 @@ export default function UploadForm() {
                     onChange={(e) => setNewClientName(e.target.value)}
                     placeholder="Ex: João Silva"
                     disabled={status === "loading"}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 disabled:text-gray-400"
+                    className={inputBase}
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-600 mb-1">
+                  <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1">
                     ID do cliente (opcional)
                   </label>
                   <input
@@ -282,7 +285,7 @@ export default function UploadForm() {
                     onChange={(e) => setNewClientDisplayId(e.target.value)}
                     placeholder="Ex: JS001"
                     disabled={status === "loading"}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 disabled:text-gray-400"
+                    className={inputBase}
                   />
                 </div>
                 <div className="flex items-end justify-end">
@@ -321,7 +324,7 @@ export default function UploadForm() {
                         alert("Erro ao criar cliente. Tente novamente.");
                       }
                     }}
-                    className="px-3 py-2 rounded-lg text-xs font-medium bg-blue-600 text-white hover:bg-blue-700 disabled:bg-blue-400"
+                    className="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-sm font-medium px-4 py-2 rounded-md transition-colors duration-150 disabled:opacity-50"
                   >
                     Salvar cliente
                   </button>
@@ -333,14 +336,14 @@ export default function UploadForm() {
           {/* Quarter and Year */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Trimestre <span className="text-red-500">*</span>
+              <label className="block text-sm font-medium text-[var(--text-primary)] mb-1.5">
+                Trimestre <span className="text-[var(--error)]">*</span>
               </label>
               <select
                 value={quarter}
                 onChange={(e) => setQuarter(e.target.value as Quarter)}
                 disabled={status === "loading"}
-                className="w-full px-3.5 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 bg-white"
+                className={inputBase}
               >
                 {(Object.keys(QUARTER_LABELS) as Quarter[]).map((q) => (
                   <option key={q} value={q}>{QUARTER_LABELS[q]}</option>
@@ -348,14 +351,14 @@ export default function UploadForm() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                Ano fiscal <span className="text-red-500">*</span>
+              <label className="block text-sm font-medium text-[var(--text-primary)] mb-1.5">
+                Ano fiscal <span className="text-[var(--error)]">*</span>
               </label>
               <select
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
                 disabled={status === "loading" || yearOptions.length === 0}
-                className="w-full px-3.5 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 bg-white"
+                className={inputBase}
               >
                 {yearOptions.map((y) => (
                   <option key={y} value={String(y)}>
@@ -368,17 +371,20 @@ export default function UploadForm() {
 
           {/* File upload area */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Documentos <span className="text-red-500">*</span>
+            <label className="block text-sm font-medium text-[var(--text-primary)] mb-1.5">
+              Documentos <span className="text-[var(--error)]">*</span>
             </label>
             <div
               onDrop={handleDrop}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onClick={() => fileInputRef.current?.click()}
+              data-dragging={isDragging}
               className={`
-                relative border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all
-                ${isDragging ? "border-blue-400 bg-blue-50" : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"}
+                relative border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all duration-150
+                border-[var(--border-strong)]
+                hover:border-[var(--accent)] hover:bg-[var(--accent-light)]
+                data-[dragging=true]:border-[var(--accent)] data-[dragging=true]:bg-[var(--accent-light)]
                 ${status === "loading" ? "pointer-events-none opacity-50" : ""}
               `}
             >
@@ -391,14 +397,14 @@ export default function UploadForm() {
                 className="hidden"
               />
               <div className="flex flex-col items-center gap-2">
-                <svg className="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-10 h-10 text-[var(--text-disabled)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                 </svg>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">
+                  <p className="text-sm font-medium text-[var(--text-primary)]">
                     {isDragging ? "Solte os arquivos aqui" : "Arraste arquivos ou clique para selecionar"}
                   </p>
-                  <p className="text-xs text-gray-400 mt-0.5">PDF, CSV, JPG ou PNG</p>
+                  <p className="text-xs text-[var(--text-secondary)] mt-0.5">PDF, CSV, JPG ou PNG</p>
                 </div>
               </div>
             </div>
@@ -407,16 +413,16 @@ export default function UploadForm() {
             {files.length > 0 && (
               <ul className="mt-3 space-y-2">
                 {files.map((file, i) => (
-                  <li key={i} className="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
+                  <li key={i} className="flex items-center justify-between bg-[var(--bg-subtle)] rounded-md px-3 py-2">
                     <div className="flex items-center gap-2 min-w-0">
                       <span className="text-base">{getFileIcon(file.type)}</span>
-                      <span className="text-sm text-gray-700 truncate">{file.name}</span>
-                      <span className="text-xs text-gray-400 flex-shrink-0">{formatFileSize(file.size)}</span>
+                      <span className="text-sm text-[var(--text-primary)] truncate">{file.name}</span>
+                      <span className="text-xs text-[var(--text-secondary)] flex-shrink-0">{formatFileSize(file.size)}</span>
                     </div>
                     {status !== "loading" && (
                       <button
                         onClick={(e) => { e.stopPropagation(); removeFile(i); }}
-                        className="ml-2 text-gray-400 hover:text-red-500 flex-shrink-0 transition-colors"
+                        className="ml-2 text-[var(--text-secondary)] hover:text-[var(--error)] flex-shrink-0 transition-colors"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -431,7 +437,7 @@ export default function UploadForm() {
 
           {/* Error message */}
           {status === "error" && (
-            <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
+            <div className="bg-[var(--error-light)] border border-[var(--error)]/30 rounded-md px-4 py-3 text-sm text-[var(--error)]">
               <p className="font-medium">Erro ao processar</p>
               <p className="mt-0.5">{errorMsg}</p>
             </div>
@@ -441,19 +447,11 @@ export default function UploadForm() {
           <button
             onClick={handleSubmit}
             disabled={status === "loading"}
-            className={`
-              w-full py-2.5 px-4 rounded-lg font-medium text-sm transition-all
-              ${status === "loading"
-                ? "bg-blue-400 text-white cursor-not-allowed"
-                : "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800"}
-            `}
+            className="w-full bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-sm font-medium px-4 py-2 rounded-md transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {status === "loading" ? (
               <span className="flex items-center justify-center gap-2">
-                <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                </svg>
+                <span className="h-4 w-24 rounded bg-white/30 animate-pulse" aria-hidden />
                 {progressMsg}
               </span>
             ) : (
@@ -465,67 +463,67 @@ export default function UploadForm() {
 
       {/* Success state */}
       {status === "success" && result && (
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+        <div className="bg-white border border-[var(--border)] rounded-lg p-5">
           <div className="flex items-center gap-3 mb-5">
-            <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-10 h-10 bg-[var(--accent-light)] rounded-full flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-[var(--success)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">Processado com sucesso!</h3>
-              <p className="text-sm text-gray-500">Excel gerado. Baixe o arquivo abaixo.</p>
+              <h3 className="font-semibold text-[var(--text-primary)]">Processado com sucesso!</h3>
+              <p className="text-sm text-[var(--text-secondary)]">Excel gerado. Baixe o arquivo abaixo.</p>
             </div>
           </div>
 
-          <div className="bg-gray-50 rounded-lg p-4 space-y-2 text-sm mb-5">
+          <div className="bg-[var(--bg-subtle)] rounded-lg p-4 space-y-2 text-sm mb-5">
             <div className="flex justify-between">
-              <span className="text-gray-500">Cliente</span>
-              <span className="font-medium text-gray-800">{result.clientName}</span>
+              <span className="text-[var(--text-secondary)]">Cliente</span>
+              <span className="font-medium text-[var(--text-primary)]">{result.clientName}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-500">Período</span>
-              <span className="font-medium text-gray-800">
+              <span className="text-[var(--text-secondary)]">Período</span>
+              <span className="font-medium text-[var(--text-primary)]">
                 {result.quarter} / {result.year}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-500">Receitas extraídas</span>
-              <span className="font-medium text-green-700">
+              <span className="text-[var(--text-secondary)]">Receitas extraídas</span>
+              <span className="font-medium text-[var(--success)]">
                 {result.salesCount} lançamento{result.salesCount !== 1 ? "s" : ""}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-500">
+              <span className="text-[var(--text-secondary)]">
                 {result.purchasesMode === "auto" ? "Despesas (automáticas)" : "Despesas extraídas"}
               </span>
-              <span className="font-medium text-green-700">
+              <span className="font-medium text-[var(--success)]">
                 {result.purchasesCount} lançamento{result.purchasesCount !== 1 ? "s" : ""}
               </span>
             </div>
             {result.purchasesMode === "auto" && (
-              <p className="text-sm text-amber-600 mt-1">
+              <p className="text-sm text-[var(--warning)] mt-1">
                 ⚠️ Purchases gerados automaticamente (10% por mês do gross). Edite o Excel se necessário antes de submeter.
               </p>
             )}
             {typeof result.droppedCount === "number" && result.droppedCount > 0 && (
               <div className="flex justify-between">
-                <span className="text-gray-500">Não processadas (fora do período)</span>
-                <span className="font-medium text-red-700">
+                <span className="text-[var(--text-secondary)]">Não processadas (fora do período)</span>
+                <span className="font-medium text-[var(--error)]">
                   {result.droppedCount} lançamento{result.droppedCount !== 1 ? "s" : ""}
                 </span>
               </div>
             )}
             <div className="flex justify-between">
-              <span className="text-gray-500">Arquivo</span>
-              <span className="font-medium text-gray-800 text-right break-all">{result.fileName}</span>
+              <span className="text-[var(--text-secondary)]">Arquivo</span>
+              <span className="font-medium text-[var(--text-primary)] text-right break-all">{result.fileName}</span>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href={`/api/download?path=${encodeURIComponent(result.downloadPath)}`}
-              className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-2.5 px-4 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors text-center"
+              className="flex-1 flex items-center justify-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white py-2.5 px-4 rounded-md text-sm font-medium transition-colors duration-150 text-center"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -534,7 +532,7 @@ export default function UploadForm() {
             </a>
             <a
               href="/clients"
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-medium border border-blue-200 text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors text-center"
+              className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-md text-sm font-medium bg-white border border-[var(--border)] hover:border-[var(--border-strong)] text-[var(--text-primary)] transition-colors duration-150 text-center"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7h18M6 12h12M9 17h6" />
@@ -543,7 +541,7 @@ export default function UploadForm() {
             </a>
             <button
               onClick={handleReset}
-              className="flex-1 py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+              className="flex-1 py-2.5 px-4 rounded-md text-sm font-medium bg-white border border-[var(--border)] hover:border-[var(--border-strong)] text-[var(--text-primary)] transition-colors duration-150"
             >
               Novo processamento
             </button>

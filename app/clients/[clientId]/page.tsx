@@ -58,18 +58,18 @@ function toHistoryEntry(row: {
 
 function ErrorMessage({ message, detail }: { message: string; detail?: string }) {
   return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="max-w-4xl mx-auto">
-          <Link href="/clients" className="text-sm text-blue-600 hover:underline">
+    <main className="min-h-screen bg-[var(--bg-base)]">
+      <nav className="border-b border-[var(--border)] bg-white">
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center">
+          <Link href="/clients" className="text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium transition-colors">
             ← Clientes
           </Link>
         </div>
-      </header>
-      <div className="max-w-4xl mx-auto px-6 py-10">
-        <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
-          <h2 className="text-lg font-semibold text-amber-800 mb-2">{message}</h2>
-          {detail && <p className="text-sm text-amber-700">{detail}</p>}
+      </nav>
+      <div className="max-w-5xl mx-auto px-6 py-8">
+        <div className="bg-[var(--warning-light)] border border-amber-200 rounded-lg p-5">
+          <h2 className="text-base font-semibold text-[var(--warning)] mb-2">{message}</h2>
+          {detail && <p className="text-sm text-[var(--warning)]">{detail}</p>}
         </div>
       </div>
     </main>
@@ -99,10 +99,10 @@ export default async function ClientDetailPage({
 
     if (!clientRow) {
       return (
-        <main className="min-h-screen bg-gray-50">
-          <div className="max-w-4xl mx-auto px-6 py-10">
-            <p className="text-gray-600">Cliente não encontrado.</p>
-            <Link href="/clients" className="text-blue-600 hover:underline mt-2 inline-block">
+        <main className="min-h-screen bg-[var(--bg-base)]">
+          <div className="max-w-5xl mx-auto px-6 py-8">
+            <p className="text-[var(--text-secondary)]">Cliente não encontrado.</p>
+            <Link href="/clients" className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium mt-2 inline-block transition-colors">
               Voltar à lista de clientes
             </Link>
           </div>
@@ -131,40 +131,40 @@ export default async function ClientDetailPage({
     const entries = (historyRows || []).map(toHistoryEntry);
 
     return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
+      <main className="min-h-screen bg-[var(--bg-base)]">
+        <nav className="border-b border-[var(--border)] bg-white">
+          <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
             <Link
               href="/clients"
-              className="text-gray-500 hover:text-gray-700 text-sm font-medium"
+              className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] font-medium transition-colors"
             >
               ← Clientes
             </Link>
+            <div className="flex items-center gap-4 text-sm text-[var(--text-secondary)]">
+              <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">
+                Processar
+              </Link>
+              <a href="/api/auth/logout" className="hover:text-[var(--text-primary)] transition-colors">
+                Sair
+              </a>
+            </div>
           </div>
-          <Link
-            href="/"
-            className="text-xs text-blue-600 hover:text-blue-700 font-medium"
-          >
-            Ir para processamento
-          </Link>
-        </div>
-      </header>
+        </nav>
 
-      <div className="max-w-4xl mx-auto px-6 py-8">
-        <div className="mb-8">
-          <h1 className="text-xl font-semibold text-gray-900">
-            {client.name}
-          </h1>
-          {client.displayId && (
-            <p className="text-sm text-gray-500 mt-0.5">ID: {client.displayId}</p>
-          )}
-        </div>
+        <div className="max-w-5xl mx-auto px-6 py-8">
+          <div className="mb-8">
+            <h1 className="text-2xl font-semibold text-[var(--text-primary)]">
+              {client.name}
+            </h1>
+            {client.displayId && (
+              <p className="text-sm text-[var(--text-secondary)] mt-1">ID: {client.displayId}</p>
+            )}
+          </div>
 
-        <ClientHistory entries={entries} />
-      </div>
-    </main>
-  );
+          <ClientHistory entries={entries} />
+        </div>
+      </main>
+    );
   } catch (err) {
     console.error("Client detail page error:", err);
     return (

@@ -122,10 +122,17 @@ export default function ClientHistory({ entries }: Props) {
     };
   }, []);
 
+  const quarterBadgeClass: Record<string, string> = {
+    Q1: "bg-blue-50 text-blue-700 border-blue-200",
+    Q2: "bg-purple-50 text-purple-700 border-purple-200",
+    Q3: "bg-amber-50 text-amber-700 border-amber-200",
+    Q4: "bg-red-50 text-red-700 border-red-200",
+  };
+
   if (items.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <p className="text-sm text-gray-500">
+      <div className="bg-white border border-[var(--border)] rounded-lg p-5">
+        <p className="text-sm text-[var(--text-secondary)]">
           Nenhuma declaração processada ainda para este cliente.
         </p>
       </div>
@@ -134,42 +141,46 @@ export default function ClientHistory({ entries }: Props) {
 
   return (
     <div ref={containerRef}>
-      <div className="space-y-8">
+      <div className="space-y-6">
         {quarterKeys.map((key) => {
           const [quarter, year] = key.split("_");
           const list = byQuarter[key];
+          const badgeClass = quarterBadgeClass[quarter] || "bg-[var(--bg-subtle)] text-[var(--text-secondary)] border-[var(--border)]";
           return (
             <section
               key={key}
-              className="bg-white rounded-xl border border-gray-200 shadow-sm"
+              className="bg-white border border-[var(--border)] rounded-lg overflow-hidden"
             >
-              <div className="px-6 py-3 bg-gray-50 border-b border-gray-100">
-                <h2 className="text-sm font-semibold text-gray-800">
-                  {quarter} / {year}
+              <div className="px-5 py-3 bg-[var(--bg-subtle)] border-b border-[var(--border)] flex items-center gap-2">
+                <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-mono border ${badgeClass}`}>
+                  {quarter}
+                </span>
+                <h2 className="text-sm font-medium text-[var(--text-primary)]">
+                  {year}
                 </h2>
               </div>
-              <div className="divide-y divide-gray-100">
+              <div className="divide-y divide-[var(--bg-subtle)]">
                 {list.map((entry) => (
                   <div
                     key={entry.id}
-                    className="px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+                    className="px-5 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
                   >
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-1 text-sm">
                       <div>
-                        <span className="text-gray-500">Receitas</span>
-                        <p className="font-medium text-green-700">
+                        <span className="text-[var(--text-secondary)]">Receitas</span>
+                        <p className="font-medium text-[var(--success)] font-mono">
                           {entry.salesCount}
                         </p>
                       </div>
                       <div>
-                        <span className="text-gray-500">Despesas</span>
-                        <p className="font-medium text-green-700">
+                        <span className="text-[var(--text-secondary)]">Despesas</span>
+                        <p className="font-medium text-[var(--success)] font-mono">
                           {entry.purchasesCount}
                         </p>
                       </div>
                       <div>
-                        <span className="text-gray-500">Gerado em</span>
-                        <p className="font-medium text-gray-800">
+                        <span className="text-[var(--text-secondary)]">Gerado em</span>
+                        <p className="font-medium text-[var(--text-primary)]">
                           {new Date(entry.createdAt).toLocaleString("pt-BR", {
                             dateStyle: "short",
                             timeStyle: "short",
@@ -177,21 +188,21 @@ export default function ClientHistory({ entries }: Props) {
                         </p>
                       </div>
                       <div className="col-span-2 sm:col-span-1">
-                        <span className="text-gray-500">Documentos enviados</span>
+                        <span className="text-[var(--text-secondary)]">Documentos enviados</span>
                         {entry.uploadedFiles && entry.uploadedFiles.length > 0 ? (
-                          <p className="mt-0.5 text-xs text-gray-700">
+                          <p className="mt-0.5 text-xs text-[var(--text-primary)]">
                             {entry.uploadedFiles.length} documento
                             {entry.uploadedFiles.length !== 1 ? "s" : ""}
                           </p>
                         ) : entry.uploadedFileNames &&
                           entry.uploadedFileNames.length > 0 ? (
-                          <p className="mt-0.5 text-xs text-gray-500">
+                          <p className="mt-0.5 text-xs text-[var(--text-secondary)]">
                             {entry.uploadedFileNames.length} documento
                             {entry.uploadedFileNames.length !== 1 ? "s" : ""}{" "}
                             (processamentos antigos, sem download salvo)
                           </p>
                         ) : (
-                          <p className="text-gray-400 text-xs mt-0.5">—</p>
+                          <p className="text-[var(--text-disabled)] text-xs mt-0.5">—</p>
                         )}
                       </div>
                     </div>
@@ -203,7 +214,7 @@ export default function ClientHistory({ entries }: Props) {
                             prev === entry.id ? null : entry.id
                           )
                         }
-                        className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-800"
+                        className="inline-flex items-center justify-center w-8 h-8 rounded-md border border-[var(--border)] bg-white text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)] transition-colors duration-150"
                       >
                         <span className="sr-only">Abrir opções</span>
                         <svg
@@ -217,14 +228,14 @@ export default function ClientHistory({ entries }: Props) {
                       </button>
 
                       {openMenuId === entry.id && (
-                        <div className="absolute right-0 mt-2 w-44 rounded-lg bg-white border border-gray-200 shadow-lg z-20">
+                        <div className="absolute right-0 mt-2 w-44 rounded-md bg-white border border-[var(--border)] z-20 py-1">
                           <button
                             type="button"
                             onClick={() => {
                               setOpenMenuId(null);
                               handleDownloadExcel(entry);
                             }}
-                            className="w-full text-left px-3 py-2 text-xs text-gray-700 hover:bg-gray-50"
+                            className="w-full text-left px-3 py-2 text-xs text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] transition-colors"
                           >
                             Baixar declaração
                           </button>
@@ -234,7 +245,7 @@ export default function ClientHistory({ entries }: Props) {
                               setOpenMenuId(null);
                               handleDownloadDocuments(entry);
                             }}
-                            className="w-full text-left px-3 py-2 text-xs text-gray-700 hover:bg-gray-50"
+                            className="w-full text-left px-3 py-2 text-xs text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] transition-colors"
                           >
                             Baixar documentos
                           </button>
@@ -244,7 +255,7 @@ export default function ClientHistory({ entries }: Props) {
                               setOpenMenuId(null);
                               handleRequestDelete(entry);
                             }}
-                            className="w-full text-left px-3 py-2 text-xs text-red-700 hover:bg-red-50 border-t border-gray-100"
+                            className="w-full text-left px-3 py-2 text-xs text-[var(--error)] hover:bg-[var(--error-light)] border-t border-[var(--border)] transition-colors"
                           >
                             Excluir
                           </button>
@@ -261,18 +272,18 @@ export default function ClientHistory({ entries }: Props) {
 
       {modalOpen && deleting && (
         <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/40">
-          <div className="bg-white rounded-xl shadow-lg max-w-sm w-full mx-4 p-6">
-            <h3 className="text-sm font-semibold text-gray-900 mb-2">
+          <div className="bg-white border border-[var(--border)] rounded-lg max-w-sm w-full mx-4 p-5">
+            <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
               Excluir declaração
             </h3>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-[var(--text-secondary)] mb-4">
               Tem certeza de que deseja excluir esta declaração? Isso removerá o
               arquivo Excel gerado e os documentos salvos deste histórico. Os
               arquivos originais fora do sistema não serão afetados.
             </p>
-            <p className="text-xs text-gray-500 mb-4">
+            <p className="text-xs text-[var(--text-secondary)] mb-4">
               Período:{" "}
-              <span className="font-medium">
+              <span className="font-medium text-[var(--text-primary)]">
                 {deleting.quarter} / {deleting.year}
               </span>
             </p>
@@ -281,7 +292,7 @@ export default function ClientHistory({ entries }: Props) {
                 type="button"
                 onClick={handleCancelDelete}
                 disabled={loading}
-                className="px-3 py-1.5 rounded-lg text-xs font-medium border border-gray-300 text-gray-700 hover:bg-gray-50"
+                className="px-4 py-2 rounded-md text-sm font-medium bg-white border border-[var(--border)] hover:border-[var(--border-strong)] text-[var(--text-primary)] transition-colors duration-150 disabled:opacity-50"
               >
                 Cancelar
               </button>
@@ -289,7 +300,7 @@ export default function ClientHistory({ entries }: Props) {
                 type="button"
                 onClick={handleConfirmDelete}
                 disabled={loading}
-                className="px-3 py-1.5 rounded-lg text-xs font-medium bg-red-600 text-white hover:bg-red-700 disabled:bg-red-400"
+                className="px-4 py-2 rounded-md text-sm font-medium bg-white border border-[var(--border)] hover:bg-[var(--error-light)] hover:border-[var(--error)] text-[var(--error)] transition-colors duration-150 disabled:opacity-50"
               >
                 {loading ? "Excluindo..." : "Excluir"}
               </button>

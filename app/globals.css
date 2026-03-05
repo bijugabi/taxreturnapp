@@ -1,3 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Backgrounds */
+  --bg-base:       #F7F7F5;
+  --bg-surface:    #FFFFFF;
+  --bg-subtle:     #F0F0ED;
+
+  /* Borders */
+  --border:        #E2E2DC;
+  --border-strong: #C8C8C0;
+
+  /* Text */
+  --text-primary:  #1A1A18;
+  --text-secondary:#6B6B63;
+  --text-disabled: #A8A8A0;
+
+  /* Accent — verde £ */
+  --accent:        #1A7A4A;
+  --accent-light:  #E8F5EE;
+  --accent-hover:  #155F3A;
+
+  /* Status */
+  --success:       #1A7A4A;
+  --warning:       #B45309;
+  --warning-light: #FEF3C7;
+  --error:         #C0392B;
+  --error-light:   #FDECEA;
+
+  /* Quarters — identificação rápida */
+  --q1:            #3B82F6;
+  --q2:            #8B5CF6;
+  --q3:            #F59E0B;
+  --q4:            #EF4444;
+}
+
+@layer base {
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--text-primary);
+  }
+}

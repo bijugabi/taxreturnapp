@@ -1,0 +1,30 @@
+---
+description: Seguir DESIGN_SYSTEM.md em alterações de UI/frontend
+globs: "**/*.tsx,**/*.jsx,**/*.css,**/*.scss"
+alwaysApply: false
+---
+
+# Design System — UI e Frontend
+
+Em qualquer alteração de interface ou frontend, **sempre** consultar e seguir as diretrizes em `DESIGN_SYSTEM.md` na raiz do projeto.
+
+## O que fazer
+
+- **Antes de criar ou editar componentes, páginas ou estilos:** ler as secções relevantes de `DESIGN_SYSTEM.md` (tipografia, paleta, componentes, espaçamentos).
+- **Cores e variáveis:** usar apenas as variáveis CSS e tokens definidos no design system (ex.: `--bg-base`, `--accent`, `--text-primary`).
+- **Tipografia:** DM Sans para texto geral, DM Mono para valores monetários; respeitar pesos e tamanhos indicados.
+- **Componentes:** reutilizar os padrões de botões, cards, tabelas e formulários descritos em `DESIGN_SYSTEM.md`; ao criar novos, manter consistência visual.
+
+## Exemplo
+
+```tsx
+// ❌ Evitar: cores ou fontes fora do design system
+<button className="bg-blue-500 font-sans">Enviar</button>
+
+// ✅ Preferir: tokens e classes do design system
+<button className="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-sm font-medium px-4 py-2 rounded-md">
+  Enviar
+</button>
+```
+
+Quando em dúvida sobre aparência ou padrão de componente, consultar `DESIGN_SYSTEM.md` primeiro.
