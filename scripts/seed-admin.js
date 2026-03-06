@@ -8,26 +8,39 @@
 const path = require("path");
 const fs = require("fs");
 
-// Carregar .env.local e depois .env (Next.js costuma usar .env.local)
+// Pasta do projeto = pasta acima de scripts/
+const projectRoot = path.resolve(__dirname, "..");
+
 function loadEnv() {
+  let loadedPath = null;
   const files = [".env.local", ".env"];
   for (const file of files) {
-    const envPath = path.resolve(process.cwd(), file);
+    const envPath = path.join(projectRoot, file);
     if (fs.existsSync(envPath)) {
-      const content = fs.readFileSync(envPath, "utf8");
-      for (const line of content.split("\n")) {
-        const match = line.match(/^([^#=]+)=(.*)$/);
-        if (match) {
-          const key = match[1].trim();
-          const value = match[2].trim().replace(/^["']|["']$/g, "");
-          if (!process.env[key]) process.env[key] = value;
+      let content = fs.readFileSync(envPath, "utf8");
+      if (content.charCodeAt(0) === 0xfeff) content = content.slice(1); // remove BOM
+      for (const rawLine of content.split(/\r?\n/)) {
+        const line = rawLine.trim();
+        if (!line || line.startsWith("#")) continue;
+        const eq = line.indexOf("=");
+        if (eq === -1) continue;
+        const key = line.slice(0, eq).trim();
+        let value = line.slice(eq + 1).trim();
+        if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+          value = value.slice(1, -1);
         }
+        if (!process.env[key]) process.env[key] = value;
       }
+      loadedPath = envPath;
     }
   }
+  return loadedPath;
 }
 
-loadEnv();
+const loaded = loadEnv();
+if (loaded) {
+  console.error("Ficheiro de env carregado:", loaded);
+}
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -36,6 +49,11 @@ if (!url || !key) {
   console.error(
     "Defina NEXT_PUBLIC_SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY em .env ou .env.local"
   );
+  if (!loaded) console.error("Nenhum ficheiro .env.local ou .env encontrado em:", projectRoot);
+  else {
+    if (!url) console.error("  — NEXT_PUBLIC_SUPABASE_URL está em falta ou vazio");
+    if (!key) console.error("  — SUPABASE_SERVICE_ROLE_KEY está em falta ou vazio");
+  }
   process.exit(1);
 }
 
