@@ -74,6 +74,7 @@ export function verifyPassword(
 ): boolean {
   const crypto = require("crypto") as {
     scryptSync: (p: string, s: Buffer, len: number) => Buffer;
+    timingSafeEqual: (a: Buffer, b: Buffer) => boolean;
   };
   const salt = Buffer.from(saltHex, "hex");
   const expected = Buffer.from(hashHex, "hex");
